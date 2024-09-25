@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEW Invoice</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <div class="invoice-container">
+        <h2>New Invoice</h2>
+        <div class="invoice-header">
+            <div class="invoice-details">
+                <label>Invoice No</label>
+                <input type="text" value="" >
+                <label>Date</label>
+                <input type="datetime-local">
+                <label>Payment Status</label>
+                <select>
+                    <option>Select Payment Status</option>
+                    <option>Paid</option>
+                    <option>Refund</option>
+                    <option>Unpaid</option>
+                </select>
+                <label>Total Amount</label>
+                <input type="text" value="$0.00" readonly>
+            </div>
+            <div class="invoice-company">
+                <div class="logo">
+                    <img src="./image/logo-dark.png" alt="Invoika Logo">
+                </div>
+                <label>Address</label>
+                <textarea placeholder="Company Address"></textarea>
+                <input type="text" placeholder="Enter Postal Code">
+                <input type="email" placeholder="Email Address">
+                <input type="url" placeholder="Website">
+                <input type="tel" placeholder="Contact No">
+            </div>
+        </div>
+
+        <div class="address-section">
+            <div class="billing-address">
+                <h3>BILLING ADDRESS</h3>
+                <input type="text" placeholder="Full Name">
+                <textarea placeholder="Address"></textarea>
+                <input type="tel" placeholder="(123) 456-7890">
+                <input type="text" placeholder="Tax Number">
+                <div class="checkbox-container">
+                    <label>
+                        <input type="checkbox"> Will your Billing and Shipping address same?
+                    </label>
+                </div>
+            </div>
+            <div class="shipping-address">
+                <h3>SHIPPING ADDRESS</h3>
+                <input type="text" placeholder="Full Name">
+                <textarea placeholder="Address"></textarea>
+                <input type="tel" placeholder="(123) 456-7890">
+                <input type="text" placeholder="Tax Number">
+            </div>
+        </div>
+
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Product Details</th>
+                    <th>Rate ($)</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="product-body">
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <input type="text" placeholder="Product Name">
+                        <textarea placeholder="Product Details"></textarea>
+                    </td>
+                    <td><input type="number" value="0.00" step="0.01" class="rate" oninput="updateAmount(0)"></td>
+                    <td>
+                        <button class="quantity-btn" onclick="decreaseQuantity(0)">-</button>
+                        <span id="quantity-0">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity(0)">+</button>
+                    </td>
+                    <td>$<span id="amount-0">0.00</span></td>
+                    <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="add-item-btn" onclick="addItem()">+ Add Item</button>
+
+      
+
+        <div class="summary">
+            <div class="summary-item">
+                <label>Sub Total</label>
+                <textarea id="sub-total" readonly>$0.00</textarea>
+            </div>
+            <div class="summary-item">
+                <label>Estimated Tax (12.5%)</label>
+                <textarea id="estimated-tax" readonly>$0.00</textarea>
+            </div>
+            <div class="summary-item">
+                <label>Discount (Invoika15)</label>
+                <textarea id="discount" readonly>$0.00</textarea>
+            </div>
+            <div class="summary-item">
+                <label>Shipping Charge</label>
+                <textarea id="shipping-charge" readonly>$0.00</textarea>
+            </div>
+            <div class="summary-item">
+                <label>Total Amount</label>
+                <textarea id="total-amount" readonly>$0.00</textarea>
+            </div>
+        </div>
+        <div class="payment-details">
+            <h2>PAYMENT DETAILS</h2>
+            <label for="payment-method">Payment Method</label>
+            <select id="payment-method">
+                <option value="">Select Payment Method</option>
+                <option value="credit-card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="bank-transfer">Bank Transfer</option>
+            </select>
+        
+            <label for="card-holder-name">Card Holder Name</label>
+            <input type="text" id="card-holder-name" placeholder="Card Holder Name">
+        
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" placeholder="xxxx xxxx xxxx xxxx" maxlength="19">
+        
+            <label for="amount">Amount</label>
+            <input type="text" id="amount" value="$71.83" readonly>
+        </div>
+        
+        <div class="notes">
+            <h2>NOTES</h2>
+            <textarea placeholder="All accounts are to be paid within 7 days from receipt of invoice. To be paid by cheque or credit card or direct payment online. If account is not paid within 7 days the credits details supplied as confirmation of work undertaken." readonly></textarea>
+        </div>
+        
+        <div class="buttons">
+            <button class="save-btn">Save</button>
+            <button class="download-btn">Download Invoice</button>
+            <button class="send-btn">Send Invoice</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
